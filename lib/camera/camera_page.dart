@@ -93,7 +93,7 @@ class _CameraPageState extends State<CameraPage>
                   const Spacer(),
                   if (assets.isNotEmpty)
                     SizedBox(
-                      height: 80,
+                      height: 100,
                       child: ListView.builder(
                         itemCount: assets.length,
                         scrollDirection: Axis.horizontal,
@@ -110,11 +110,11 @@ class _CameraPageState extends State<CameraPage>
                               });
                             },
                             child: Container(
-                              padding: const EdgeInsets.all(5),
+                              margin: const EdgeInsets.all(10),
                               child: AssetEntityImage(
                                 assets[index],
                                 isOriginal: false,
-                                thumbnailSize: const ThumbnailSize.square(80),
+                                thumbnailSize: const ThumbnailSize.square(100),
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return const Center(
@@ -272,8 +272,6 @@ class _CameraPageState extends State<CameraPage>
                 builder: (context) =>
                     MediaPreviewPage(mediaFile: File(file.path))),
           );
-          // ignore: avoid_print
-          print('Picture saved to ${file.path}');
         }
       }
 
@@ -307,31 +305,37 @@ class _CameraPageState extends State<CameraPage>
     return SizeTransition(
       sizeFactor: _flashModeControlRowAnimation,
       child: ClipRect(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.flash_off),
-              color: Colors.white,
-              onPressed: controller != null
-                  ? () => onSetFlashModeButtonPressed(FlashMode.off)
-                  : null,
-            ),
-            IconButton(
-              icon: const Icon(Icons.flash_auto),
-              color: Colors.white,
-              onPressed: controller != null
-                  ? () => onSetFlashModeButtonPressed(FlashMode.auto)
-                  : null,
-            ),
-            IconButton(
-              icon: const Icon(Icons.flash_on),
-              color: Colors.white,
-              onPressed: controller != null
-                  ? () => onSetFlashModeButtonPressed(FlashMode.always)
-                  : null,
-            ),
-          ],
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black38,
+            borderRadius: BorderRadius.circular(50)
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.flash_off),
+                color: Colors.white,
+                onPressed: controller != null
+                    ? () => onSetFlashModeButtonPressed(FlashMode.off)
+                    : null,
+              ),
+              IconButton(
+                icon: const Icon(Icons.flash_auto),
+                color: Colors.white,
+                onPressed: controller != null
+                    ? () => onSetFlashModeButtonPressed(FlashMode.auto)
+                    : null,
+              ),
+              IconButton(
+                icon: const Icon(Icons.flash_on),
+                color: Colors.white,
+                onPressed: controller != null
+                    ? () => onSetFlashModeButtonPressed(FlashMode.always)
+                    : null,
+              ),
+            ],
+          ),
         ),
       ),
     );
